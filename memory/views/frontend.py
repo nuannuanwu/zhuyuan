@@ -54,101 +54,20 @@ import logging
 logger = logging.getLogger(__name__)
 
 def index(request, template_name="memory/tile_index.html"):
-    """
-    家长页面首页, 选择分类使会用 ``request.session`` 记录 `channel` 分类.用于详情页查询.
-
-    :param channel:
-        ``string``, 分别是 *Baby* 默认项, *推荐 - tips*, *所有 - all* 分类.
-
-    :param tag_q:
-        ``string``, 数据格式如: *1,3,4*. 服务于 *tips* 分类，根据标签 ``id`` 过滤
-
-    :params type_id:
-        ``int``, 单个 id. 服务于 *baby* 分类。
-    """
-    profile = Profile.objects.get(pk=1)
-    channel_ctx = {}
-    channel = request.GET.get("channel",'all')
-    user = request.user
-    category = TileCategory.objects.all()
-    
-    if request.user.is_authenticated():
-        #用户登录日志
-        log = Access_log()
-        log.type = 2
-        log.user = user
-        log.url = request.get_full_path()
-        log.save()
-        
-        tags = []
-        types = []
-          
-        if channel == "baby":
-            current_time = datetime.datetime.now()  
-            category = category.filter(is_tips=False) 
-            parent_category = category.filter(parent__pk=0).exclude(pk=10)     
-            tiles = Tile.objects.get_tiles_baby(user).filter(category__parent__in=parent_category)
-            record_tiles = Tile.objects.get_tiles_baby(user).filter(category__parent__id=10)
-            today_daily_tiles = get_daily_category_tiles(record_tiles, category, current_time)   
-            #today_daily_tiles = get_daily_category_tiles(tiles, category, current_time)   
-           
-            latest_active = get_daily_activitie_tiles(user)
-            latest_cookbook = get_daily_cook_books(user,current_time)
-            is_read = 1 if CookbookRead.objects.filter(user=user,cookbook=latest_cookbook,is_read=True) else 0
-
-            # 根据页面上得到category过滤返回的瓦片分类
-            scat_id = request.GET.get("scat_id", '')
-            scat_pks = [int(x) for x in filter(None, scat_id.split(","))]
-     
-            if scat_pks:
-                category_list = TileCategory.objects.filter(pk__in=scat_pks)
-                q_category = Tile.objects.get_q_category(category_list)
-                tiles =  tiles.filter(q_category)
-            
-            book_item = cook_book_item(latest_cookbook)
-            
-            template_name = "memory/tile_index_baby.html"
-            channel_ctx = {"scat_id":scat_id, "parent_category":parent_category, "book_item":book_item, "current_time":current_time,\
-                           "today_daily_tiles":today_daily_tiles,"latest_active":latest_active,"latest_cookbook":latest_cookbook,"is_read":is_read}
-            
-        elif channel == "tips":
-            category = category.filter(is_tips=True) 
-            parent_category = category.filter(parent__pk=0).exclude(pk=10)
-            tiles = Tile.objects.get_tiles_edu(user).filter(category__parent__in=parent_category)
-            
-            # 根据页面上得到category过滤返回的瓦片分类  
-            scat_id = request.GET.get("scat_id", '31')      
-            scat_pks = [int(x) for x in filter(None, scat_id.split(","))]
-            
-            if scat_pks:
-                category_list = TileCategory.objects.filter(pk__in=scat_pks)
-                q_category = Tile.objects.get_q_category(category_list)
-                tiles =  tiles.filter(q_category)
-        
-            channel_ctx = {"scat_id":scat_id, "parent_category":parent_category}
-        else:
-            # 个人的以及推荐的            
-            tiles = Tile.objects.get_tiles_all_login(user)
-            daily_category = get_daily_category()
-            if daily_category:
-                tiles = tiles.exclude(category__parent=daily_category)
-              
-    else:       
-        # 公开推荐的
-        channel = "all"
-        tiles = Tile.objects.get_tiles_all_unlogin()
-        
-    ctx = {}
-    content_type = ContentType.objects.get_for_model(Tile)
-    ctx.update({"tiles": tiles, "content_type": content_type, "channel": channel,"category":category})
-    ctx.update(channel_ctx)
-    request.session['memory_channel'] = channel
+    ctx ={}
+    tile_list = []
+    tiles = TileCategory.objects.all()
+    for i in range(50):
+        for t in tiles:
+            tile_list.append(t)
+    print tile_list,'lllllllllllllllllll'
+    ctx['tiles'] = tile_list
     if request.is_ajax():
         page = int(request.GET.get("page",'1'))
         start = (page - 1) * 15
         end = page * 15
-        tiles = tiles[start:end]
-        ctx['tiles'] = tiles
+        tiles = tile_list[start:end]
+        ctx['tiles'] = tile_list
         template_name = "memory/tile_index_container.html"
         return render(request, template_name, ctx)
     return render(request, template_name, ctx)

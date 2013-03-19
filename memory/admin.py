@@ -384,7 +384,7 @@ class RelevantStaffAdmin(BackendRoleAdmin):
 
 admin.site.unregister(Comment)
 admin.site.register(Comment,CommentAdmin)
-admin.site.register(Tile,TileAdmin)
+admin.site.register(Tile)
 admin.site.register(TileCategory,TileCategoryAdmin)
 admin.site.register(TileType,BackendRoleAdmin)
 

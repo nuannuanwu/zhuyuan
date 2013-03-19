@@ -24,29 +24,6 @@
 .kCategory .body-categorys a.ac{ color: #B88500;}
 </style>
 {% endblock %}
-{% block tile_bar %}
-  	<div class="kTileBar"> 
-    {% if request.user.is_authenticated %} 
-    <span class="btn-group" data-toggle="buttons-radio">
-        <a href="/?channel=all" class="btn span1 {% if not channel or channel = "all" %}
-            active
-          {% endif %}">{% trans "All" %}</a>         
-        <a href="/?channel=tips" class="btn span1 {% if channel == "tips" %}
-            active
-          {% endif %}">育儿频道</a>
-        <a href="/?channel=baby" class="btn span1 {% if channel == "baby" %}
-            active
-          {% endif %}">宝宝日记</a>
-    </span>
-    {% if not channel or channel == "baby" %}
-    {% include "memory/includes/pin_or_board.html" %}
-    <a class="down-btn" style="float:right" href="{% if request.user.teacher %}{% url manage_schedule_teacher %}{% else %}{% url manage_schedule_student %}{% endif %}" title="周课表下载">周课表下载</a>
-    {% endif %}  
-    {% endif %}
-    </div>
-{% endblock %}
-
-
 {% block content %}
 {% if channel == 'baby' or channel == 'tips' %}
 <!--2012 12 11 调整-->

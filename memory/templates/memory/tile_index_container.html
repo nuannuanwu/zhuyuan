@@ -4,28 +4,12 @@
     
     {% for tile in tiles %}
     <li id="ti-{{tile.id}}" class="span3 tile">
-        {% if request.user.is_authenticated %}
-        {% if tile.is_report %}
-        {% else %}
-        <div class="actions">
-            <div class="pull-right">
-                <a class="comment_btn btn btn-small" href="{% url tile_view tile.id %}?channel={{channel|default:"baby"}}&for_comment=1"><i class="icon-comment"></i> {% trans "Comment" %}<i class="icon-external-link"></i></a>
-                <button class="btn btn-small likeable" data-id="{{tile.id}}" data-href="{% url api_web_tiles_like %}">
-                    {% if tile|liked_by_user:request.user %}
-                    <i class="like icon-heart"></i>&nbsp;<span>{% trans "unlike" %}</span>
-                    {% else %}
-                    <i class="icon-heart"></i>&nbsp;<span>{% trans "Like" %}</span>
-                    {% endif %}
-                </button>
-            </div>
-        </div>
-         {% endif %}
-        {% endif %}
+        
 
         <div class="thumbnail">
             <!-- 杂项类型 -->
             {% if tile.is_report %}
-                <a href="{% url tile_view tile.id %}?channel={{channel|default:"baby"}}" class="kBabyA">
+                <a href="{% url tile_view tile.id %}" class="kBabyA">
                     <div class="kBabyState kSt_{{ tile.type_id }} kTile-img">
                         <div class="kSt_Img"></div>
                         <div class="kState"><p class="state">{{ tile.title }}</p><br/><p class="info" title="{{ tile.description }}">{{ tile.description|cut_str:5 }}</p></div>
