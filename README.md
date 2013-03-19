@@ -1,0 +1,42 @@
+*.pyc
+*.swp
+.gitconfig
+*.orig
+*.db
+*.wsgic
+_media/
+_static/
+media/
+src/
+fixtures/
+build/
+*.log.*
+
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+.project
+.pydevproject
+.settings
