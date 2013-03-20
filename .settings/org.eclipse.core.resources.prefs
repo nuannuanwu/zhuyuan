@@ -2,4 +2,5 @@ eclipse.preferences.version=1
 encoding//memory/admin.py=utf-8
 encoding//memory/models.py=utf-8
 encoding//memory/settings.py=utf-8
+encoding//memory/urls.py=utf-8
 encoding//memory/views/frontend.py=utf-8

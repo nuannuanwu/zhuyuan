@@ -5,8 +5,6 @@ from django.utils.translation import pgettext, ungettext, ugettext as _
 from django.core.urlresolvers import resolve, reverse, get_script_prefix
 from django.core.exceptions import ObjectDoesNotExist
 from memory import helpers
-from aq.views.default import get_unread_mentor_count as unread_mentor
-from waiter.views.default import get_unread_waiter_count as unread_waiter
 from django.contrib.comments import Comment
 import datetime,time
 from django.db.models import Q

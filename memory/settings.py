@@ -10,10 +10,6 @@ GRAPPELLI_ADMIN_TITLE = 'memory'
 
 SITE_TITLE = 'memory'
 
-########################
-# MAIN DJANGO SETTINGS #
-########################
-
 ADMINS = (
 	# ('Your Name', 'your_email@domain.com'),
 )
@@ -34,27 +30,14 @@ LANGUAGES = (
 
 DEBUG = False
 
-# Whether a user's session cookie expires when the Web browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 SITE_ID = 1
 
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
 USE_I18N = True
 
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale.
 USE_L10N = True
 
-
-
-# Make this unique, and don't share it with anybody.
-#SECRET_KEY = "96f8815f-b23c-4128-b097-8a4118d2cb3fb981fa87-b81b-4744-b413-819f7fde181f43353c7c-a2b6-435d-b673-8145bc9a31f5"
-
-# Tuple of IP addresses, as strings, that:
-#   * See debug comments, when DEBUG is true
-#   * Receive x-headers
 INTERNAL_IPS = ("127.0.0.1",)
 
 # List of callables that know how to import templates from various sources.
@@ -76,11 +59,6 @@ STATICFILES_FINDERS = (
 	"django.contrib.staticfiles.finders.AppDirectoriesFinder",
 #	'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
-
-
-#############
-# DATABASES #
-#############
 
 try:
 	import sae.const
@@ -182,21 +160,13 @@ class DataBaseRouter(object):
 	   
 	   
 DATABASE_ROUTERS = [DataBaseRouter()]
-#########
-# PATHS #
-#########
 
 import os
 
-# Full filesystem path to the project.
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-# Name of the directory for the project.
 PROJECT_DIRNAME = PROJECT_ROOT.split(os.sep)[-1]
 
-# Every cache key will get prefixed with this value - here we set it to
-# the name of the directory the project is in to try and use something
-# project specific.
 CACHE_MIDDLEWARE_KEY_PREFIX = PROJECT_DIRNAME
 
 MEDIA_ROOT = os.path.join(PROJECT_DIR, '_media')
@@ -208,18 +178,10 @@ STATIC_URL = '/_static/'
 
 FILE_PATH = os.path.join(PROJECT_ROOT, 'file')
 
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
 
-# Package/module name to import the root urlpatterns from for the project.
 ROOT_URLCONF = "%s.urls" % PROJECT_DIRNAME
 
-# Put strings here, like "/home/html/django_templates"
-# or "C:/www/django/templates".
-# Always use forward slashes, even on Windows.
-# Don't forget to use absolute paths, not relative paths.
 TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 
 
@@ -242,7 +204,6 @@ INSTALLED_APPS = (
 	'django.contrib.markup',
 	'django.contrib.humanize',
 
-	"backend",
 	"sae_extra",
 	"oss",
 	"oss_extra",
@@ -250,12 +211,7 @@ INSTALLED_APPS = (
 	# 主程序
 	'memory',
 	'manage',
-	# 专家问答
-	'aq',
-	# 客服问答
-	'waiter',
-	# 短信相关
-	'sms',
+
 	# 分页功能
 	'pagination',
 	# 用户扩展信息
@@ -263,33 +219,15 @@ INSTALLED_APPS = (
 	'bootstrap',
 	# 前台用户注册登录功能 + 附加message
 	'userena', 'guardian', 'easy_thumbnails', 'userena.contrib.umessages',
-	# 相册功能
-	#'photologue', 'tagging',
+	
 	# 喜欢功能
 	'likeable',
-	# 评分系统
-	#'djangoratings',
-	# 数据库维护
-	#'south',
-	# oauth2 底层包
-	'oauth2app', 'uni_form',
-	# oauth2 基本接口,供外部调用
-	'memory.apps.oauth2',
-	# api 数据接口
-	'api',
-	# api 客户端，调试使用
-	'memory.apps.client',
 	'storages',
 	# 'piston'
 	'bootstrapform',
 	'captcha',
-	# 提醒机制
-	'notifications',
 )
 
-# List of processors used by RequestContext to populate the context.
-# Each one should be a callable that takes the request object as its
-# only parameter and returns a dictionary to add to the context.
 TEMPLATE_CONTEXT_PROCESSORS = (
 	# 可以在模板使用 user 和 perms
 	"django.contrib.auth.context_processors.auth",
@@ -317,13 +255,8 @@ CTX_CONFIG = {
 	'DEFAULT_AVATAR_LARGE':'img/avatar_128.png',
 }
 
-# List of middleware classes to use. Order is important; in the request phase,
-# these middleware classes will be applied in the order given, and in the
-# response phase the middleware will be applied in reverse order.
-MIDDLEWARE_CLASSES = (
-	#缓存
-	#'django.middleware.cache.UpdateCacheMiddleware',#必须在中间件清单的第一条
 
+MIDDLEWARE_CLASSES = (
 	"django.middleware.common.CommonMiddleware",
 	"django.contrib.sessions.middleware.SessionMiddleware",
 	"django.middleware.csrf.CsrfViewMiddleware",
@@ -333,15 +266,8 @@ MIDDLEWARE_CLASSES = (
 	# gzip
 	'django.middleware.gzip.GZipMiddleware',
 	'pagination.middleware.PaginationMiddleware',
-
-	#'debug_toolbar.middleware.DebugToolbarMiddleware',
-
-
-	#'django.middleware.cache.FetchFromCacheMiddleware',#必须在中间件清单的最后一条
 )
 
-# Store these package names here as they may change in the future since
-# at the moment we are using custom forks of them.
 PACKAGE_NAME_FILEBROWSER = "filebrowser_safe"
 PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
 
@@ -352,15 +278,7 @@ AUTHENTICATION_BACKENDS = (
 	'django.contrib.auth.backends.ModelBackend',
 )
 
-################
-# oauth2	   #
-################
 OAUTH2_ACCESS_TOKEN_EXPIRATION = 3600*24*30
-
-
-################
-# easy_thumbnails#
-################
 
 THUMBNAIL_ALIASES = {
 	'': {
@@ -375,11 +293,6 @@ THUMBNAIL_ALIASES = {
 	},
 }
 
-
-################
-# userena #
-################
-# Userena settings
 LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
 LOGIN_URL = '/accounts/signin/'
 LOGOUT_URL = '/accounts/signout/'
@@ -393,8 +306,6 @@ USERENA_SIGNIN_REDIRECT_URL = '/'
 # Guardian
 ANONYMOUS_USER_ID = -1
 
-
-
 EMAIL_BACKEND = 'sae_extra.smtp.EmailBackend'
 # email config
 EMAIL_HOST='smtp.sina.com'
@@ -405,9 +316,6 @@ EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'yii4sae@sina.com'
 
 CACHEMACHINE_DEPEND_SILENC = True
-
-#仿缓存（供开发时使用）
-#CACHE_BACKEND = 'dummy:///'
 
 CACHE_COUNT_TIMEOUT = 3600
 THUMBNAIL_SUBDIR = "thumbs"

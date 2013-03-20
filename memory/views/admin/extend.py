@@ -9,9 +9,6 @@ from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.admin.views.decorators import staff_member_required
 
-from aq.views.default import get_unread_mentor_count as unread_mentor
-from waiter.views.default import get_unread_waiter_count as unread_waiter
-
 from memory import helpers
 from django.http import Http404
 from django.http import HttpResponse

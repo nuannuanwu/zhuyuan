@@ -1,11 +1,8 @@
 
 {% load pagination_tags memory_tags i18n%}
     {% if tiles %}
-    
     {% for tile in tiles %}
     <li id="ti-{{tile.id}}" class="span3 tile">
-        
-
         <div class="thumbnail">
             <!-- 杂项类型 -->
             {% if tile.is_report %}

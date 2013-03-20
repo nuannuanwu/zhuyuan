@@ -16,14 +16,11 @@ from django.contrib import comments
 from django.contrib.auth.decorators import login_required, permission_required
 # from django.views.decorators.http import require_POST, require_GET
 
-from memory.models import Tile, TileTag, TileType, Student,Sms, VerifySms,TileCategory,Mentor,\
-Cookbook,CookbookType,Access_log,Comment_relation,Activity,TileVisitor,DailyRecordVisitor,CookbookRead
+from memory.models import Tile,TileCategory
 from django.db.models import Q
 from django.contrib.contenttypes.models import ContentType
 from memory import helpers
-import calendar
-import datetime
-import time
+import datetime,calendar,time
 from django.http import Http404
 from django.http import HttpResponse
 
@@ -35,7 +32,6 @@ from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from memory.forms import MobileForm, PwdResetForm, PwdMobileForm
 from memory.profiles.models import Profile
-from notifications import notify
 from django.contrib.auth import views as auth_views
 from django.contrib.sites.models import get_current_site
 from django.db import connection
@@ -728,15 +724,6 @@ def add_daily_record_visitor(user,obj):
     new_visitor.visitor = user
     new_visitor.target = obj
     new_visitor.save()          
-    
-from api.handlers.message import MessageHandler
-def unread_list(request):
-    user = request.user
-    if request.user.is_authenticated():
-        con = MessageHandler().unread_count(request)
-        return helpers.ajax_ok('成功',con)
-    else:
-        return helpers.ajax_error('失败','')
 
 @login_required
 def mark_cookbook_as_read(request):
