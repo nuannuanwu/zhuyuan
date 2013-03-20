@@ -44,20 +44,18 @@ from django.db.models import Max
 def index(request, template_name="memory/tile_index.html"):
     ctx ={}
     tile_list = []
-    tiles = TileCategory.objects.all()
-    for i in range(50):
-        for t in tiles:
-            tile_list.append(t)
-    print tile_list,'lllllllllllllllllll'
-    ctx['tiles'] = tile_list
+    tiles = Tile.objects.all()
+    
+    ctx['tiles'] = tiles
     if request.is_ajax():
         page = int(request.GET.get("page",'1'))
         start = (page - 1) * 15
         end = page * 15
-        tiles = tile_list[start:end]
-        ctx['tiles'] = tile_list
+        tiles = tiles[start:end]
+        ctx['tiles'] = tiles
         template_name = "memory/tile_index_container.html"
         return render(request, template_name, ctx)
+    print tiles.count(),'ttttt'
     return render(request, template_name, ctx)
 
 

@@ -17,7 +17,7 @@ $(function() {
             finishedMsg: "没有更多页面了",
             //img: 'http://i.imgur.com/6RMhx.gif'
 			//img: '{{ STATIC_URL }}memory/img/6RMhx.gif'
-			img: 'http://99.pyflask.sinaapp.com/_static/memory/img/6RMhx.gif'
+			img: 'http://oss.aliyuncs.com/zhuyuan/icon/6RMhx.gif'
         }
     },
     // trigger Masonry as a callback

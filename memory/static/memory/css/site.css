@@ -10,7 +10,7 @@
 
 /* `bootstrap - 扩展
 ----------------------------------------------------------------------------------------------------*/
-body{background: url(../img/paper.jpg) repeat scroll 0 0 #F7F5F5;padding-top: 60px;}
+body{background-color: #BD9E67;padding-top: 60px;}
 .thumbnail{background-color: #FFF;}
 #countNew{display:none;position:fixed;left:-5px;top:110px;padding:10px;width: 145px;}
 #countNew span{display: block;line-height: 15px;vertical-align: bottom;white-space: nowrap;font-size:14px;font-weight: 700;}

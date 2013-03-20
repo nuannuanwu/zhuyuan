@@ -15,7 +15,7 @@ from memory import settings
 import re
 import inspect
 
-from memory.models import Tile, EventType, Waiter,TileCategory,Comment_relation,Mentor
+from memory.models import Tile,TileCategory
 from userena.contrib.umessages.models import Message, MessageRecipient, MessageContact
 import datetime
 # cache
@@ -417,15 +417,6 @@ def out_of_range(context, image,size="normal",height=800):
     return ''
 
 
-@register.assignment_tag(takes_context=True)
-def get_comment_reply(context,comment):
-    """
-    获取评论的回复
-    """
-    reply = Comment_relation.objects.filter(action_object=comment)
-    return reply[0] if reply else ''
-
-
 @register.filter
 def in_tag_q(value, tag_q):
     """
@@ -558,7 +549,7 @@ def daily_setting(desc):
         for items in daily.values():
             for i in items:
                 type_id = i.get("type_id")
-                i['type'] = EventType.objects.get(pk=type_id)
+                i['type'] = 1
     except Exception, e:
         print e
         return {}
@@ -680,35 +671,6 @@ def replace_n(value):
 def has_perm(context, p):
     user = context.get('request').user
     return user.has_perm(p)
-
-class WaiterURL(template.Node): 
-    def render(self, context):  
-        waiter = Waiter.objects.latest('pk')
-        return reverse('user_umessages_history',kwargs={'uid':waiter.user_id})
-
-@register.tag
-def waiter_url(parser, token):  
-    """
-    返回客服url
-    """  
-    return WaiterURL()
-
-class UreadWaiter(template.Node):
-    def render(self, context):  
-        return unread_waiter()
-    
-@register.tag
-def get_unread_waiter_count(parser, token):
-    return UreadWaiter()
-    
-
-class UreadMentor(template.Node):
-    def render(self, context):  
-        return unread_mentor()
-    
-@register.tag
-def get_unread_mentor_count(parser, token):
-    return UreadMentor()
 
 
 @register.filter

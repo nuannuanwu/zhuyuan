@@ -141,7 +141,7 @@ a{ outline:0;}
   text-align: center;
   z-index: 100;
   position: fixed;
-  left: 45%;
+  left: 40.7%;
   bottom: 40px;
   width: 200px;
   padding: 10px;
@@ -220,7 +220,7 @@ i.like {
 /* `scrolltopcontrol
    ============================================================ */
 a.top_stick, a.top_stick:active, a.top_stick:visited {
-	background-image:url(../img/btn_top.gif);
+	background-image:url(../img/return_top.png);
 	background-position:0 0;
 	background-repeat:no-repeat;
 	color:#FFFFFF;
@@ -231,11 +231,7 @@ a.top_stick, a.top_stick:active, a.top_stick:visited {
 	text-decoration:none;
 	width:71px;
 }
-a.top_stick:hover, a.top_stick:active {
-	background-image:url(../img/btn_top.gif);
-	background-position:-88px 0;
-	background-repeat:no-repeat;
-}
+
 
 
 /* `popover

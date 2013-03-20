@@ -22,7 +22,7 @@ from userena.utils import signin_redirect, get_profile_model
 from userena import signals as userena_signals
 from userena import settings as userena_settings
 from memory.profiles.models import Profile
-from memory.models import ChangeUsername, Access_log
+from memory.models import ChangeUsername
 from manage.views.admin import has_change
 
 from guardian.decorators import permission_required_or_403
@@ -349,13 +349,6 @@ def signin(request, auth_form=AuthenticationForm,
                                 password=password)
             if user.is_active:
                 login(request, user)
-                
-                log = Access_log()
-                log.type = 1
-                log.user = user
-                log.url = request.get_full_path()
-                log.save()
-                
                 if remember_me:
                     request.session.set_expiry(userena_settings.USERENA_REMEMBER_ME_DAYS[1] * 86400)
                 else: request.session.set_expiry(0)

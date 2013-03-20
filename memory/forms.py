@@ -5,7 +5,7 @@ from django import forms
 from userena.forms import SignupForm, ChangeEmailForm, EditProfileForm, AuthenticationForm
 from memory import helpers
 from django.contrib.auth import authenticate
-from memory.models import Tile, VerifySms
+from memory.models import Tile
 from django.forms import ModelForm
 from captcha.fields import CaptchaField
 from memory.validators import validate_mobile_number
@@ -82,29 +82,6 @@ class KAuthenticationForm(AuthenticationForm):
         return self.cleaned_data
 
 from django.db import models
-from memory.models import TileType
-class TileCreationForm(forms.ModelForm):
-    """
-    A form that creates a user, with no privileges, from the given username and
-    password.
-    """
-
-
- 
-    LOOKUP_CHOICES = (
-        #(u'0', u'教师发布'),
-        (1, u'后台推广'),
-        )
-
-    TYPE_CHOICES = (
-        ('', '------'),
-        (1, u'图片'),
-        (2, u'视频'),
-        )
-
-    is_tips = forms.ChoiceField(initial="1",choices=LOOKUP_CHOICES)
-    #type = forms.ChoiceField(choices=TYPE_CHOICES)
-    type = models.ForeignKey(TileType,verbose_name = _('tile type'),limit_choices_to={'id__in': [1,2]})
 
 class MobileForm(forms.Form):
     """

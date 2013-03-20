@@ -2,8 +2,6 @@
 
 from django.utils.translation import ugettext as _
 from django.shortcuts import redirect, render, get_object_or_404
-
-from memory.models import VerifySms,Sms
 from django.db.models import Q
 from django.contrib.contenttypes.models import ContentType
 from memory import helpers
@@ -84,8 +82,7 @@ def pwd_back_mobile(request, template_name="memory/pwd_back/pwd_back_mobile_a.ht
             mobile = form.cleaned_data['mobile']
             print mobile,'mobile'
             user = verify_sms_helper.get_user_from_mobile(mobile)
-            VerifySms.objects.set_vcode_invalid(user)
-            print 1111111111
+           
             request.session['pwd_back'] = {
                 'type':'mobile',
                 'step':{                            

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from memory.models import VerifySms, Sms
+
 from memory.profiles.models import Profile
 from django.contrib.sites.models import Site
 from django.contrib.auth.models import User

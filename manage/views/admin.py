@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response, redirect, render, get_object_or_404
-from memory.models import Group, School, Student, Teacher,ChangeUsername
-from manage.forms import ClassForm, ChangeUsernameForm
+from memory.models import ChangeUsername
+from manage.forms import ChangeUsernameForm
 from django.core.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.debug import sensitive_post_parameters
