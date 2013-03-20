@@ -71,23 +71,7 @@
         <div class="g-d-6 g-d-l">
             <div class="grp-module" id="grp-recent-actions-module">
                 
-                <div class="grp-module">
-                    <h3>未读留言</h3>
-                        <ul class="grp-listing-small">
-                                <li class="grp-row">
-                                    <p style="margin-right:1.8em;">
-                                      <span class="">导师：</span>
-                                    <a href="{% url aq %}" target="_blank">{% get_unread_mentor_count %}条</a>
-                                    </p>
-                                    <p>
-                                      <span class="" >客服：</span>
-                                      <a href="{% url waiter %}" target="_blank">{% get_unread_waiter_count %}条</a>
-                                    </p>
-                                    <a onclick="send_staff_unread()" href="javascript:;" style="float:right">全部发送</a>
-                                </li>
-                        </ul>
-                   
-                </div>
+                
                 <h2>{% trans 'Recent Actions' %}</h2>
                 <div class="grp-module">
                     <h3>{% trans 'My Actions' %}</h3>

@@ -38,19 +38,10 @@
     <li class="span3 tile"><div class="thumbnail" style="height: 200px;"></div></li>
     <li class="span3 tile"><div class="thumbnail" style="height: 200px;"></div></li>
     <li class="span3 tile"><div class="thumbnail" style="height: 200px;"></div></li>
-    
+    <li class="span3 tile"><div class="thumbnail" style="height: 200px;"></div></li>
+    <li class="span3 tile"><div class="thumbnail" style="height: 200px;"></div></li>
     <li class="kNoContent" style="top:30px;right:230px;">
-        {% if request.user.is_authenticated %}
-        {% if channel == "tips" %}
-        <span style="font-size:20px;display:block;margin-top: 40px;">您筛选的标签下&nbsp;暂时没有内容&nbsp;请稍后再访问</span>
-        <small style="font-size:15px;display:block;margin-top: 5px;">您可以先访问&nbsp;<a href="?channel=all">推荐内容</a></small>
-        {% else %}
-        <span style="font-size:20px;display:block;margin-top: 40px;">更多内容&nbsp;正在采集中&nbsp;请稍后再访问</span>
-        <!--small style="font-size:15px;display:block;margin-top: 5px;">您可以先访问&nbsp;<a href="?channel=all">推荐内容</a></small-->
-        {% endif %}
-        {% else %}
-        <span style="font-size:20px;display:block;margin-top: 50px;">暂无相关内容，请稍后访问</span>
-        {% endif %}
+        <span style="font-size:20px;display:block;margin-top: 50px;">暂无相关内容，请稍后访问</span>  
     </li>
     {% endif %}
     </ul>
