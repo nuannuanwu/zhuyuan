@@ -3,16 +3,26 @@ $(function() {
     var $container = $('.thumbnails');
     $container.imagesLoaded(function(){
         $container.masonry({
+            columnWidth: function( containerWidth ) {
+                return containerWidth / 5;
+              },
             itemSelector : '.tile',
-            columnWidth: 234
+            //columnWidth: 234,
+            gutterWidth: 0,
+            isAnimated: true,
+            animationOptions: {
+                duration: 400,
+                easing: 'linear',
+                queue: false
+            }
         });
     });
 	//分页自动加载，新增内容瀑布流化
     $container.infinitescroll({
         navSelector  : '#pagination',    // selector for the paged navigation
         nextSelector : $('#pagination li.active').next().children('a'),  // selector for the NEXT link (to page 2)
-        itemSelector : '.tile:not(.tile-tags)',     // selector for all items you'll retrieve
-        //debug        : true,
+        itemSelector : '.tile',     // selector for all items you'll retrieve
+        debug        : true,
         loading: {
             finishedMsg: "没有更多页面了",
             //img: 'http://i.imgur.com/6RMhx.gif'

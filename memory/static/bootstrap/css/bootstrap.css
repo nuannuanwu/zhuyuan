@@ -2874,7 +2874,7 @@ table th[class*="span"],
 
 .dropup,
 .dropdown {
-  position: relative;
+  position: relative;color: #B98600;background-color: #333;
 }
 
 .dropdown-toggle {
@@ -4560,7 +4560,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 940px;
+  width: 1190px;
 }
 
 .navbar-fixed-top {
@@ -4594,7 +4594,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .nav.pull-right {
   float: right;
-  margin-right: 0;
+  margin-right: 16px;color: #B98600;background-color: #333;
 }
 
 .navbar .nav > li {
@@ -6133,9 +6133,12 @@ a.badge:focus {
   line-height: 30px;
 }
 
+.nav_a {text-decoration: none;color: #B98600;}
+.nav_a:hover {text-decoration: none;color: #B98600;}
 .pull-right {
-  float: right;
+  float: right;list-style-type: none;margin-right: 16px; margin-top: 13px;
 }
+.nav_ul:hover {text-decoration: none; background-color: #272A39 }
 
 .pull-left {
   float: left;

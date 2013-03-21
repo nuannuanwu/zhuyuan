@@ -220,7 +220,7 @@ i.like {
 /* `scrolltopcontrol
    ============================================================ */
 a.top_stick, a.top_stick:active, a.top_stick:visited {
-	background-image:url(../img/return_top.png);
+	background-image:url(../img/topback.png);
 	background-position:0 0;
 	background-repeat:no-repeat;
 	color:#FFFFFF;
@@ -229,7 +229,10 @@ a.top_stick, a.top_stick:active, a.top_stick:visited {
 	height:24px;
 	padding-top: 48px;
 	text-decoration:none;
-	width:71px;
+	width:25px;
+  position: absolute;
+  right: -5px;
+  bottom: -10px;
 }
 
 
@@ -283,8 +286,8 @@ a.top_stick, a.top_stick:active, a.top_stick:visited {
 /* `kNavbar - topbar调整
    ============================================================ */
    /*background: url(../img/site.png) 0 -60px repeat-x;*/
-.kNavbar .navbar-inner{background: url(../img/site.png) 0 -60px repeat-x;  filter:none; box-shadow:none; height: 42px; border:0px;}
-.kNavbar .nav{ margin-right: -8px !important;}
+.kNavbar .navbar-inner{background: repeat-x; filter:none; box-shadow:none; height: 42px; border:0px; background-color: #333;}
+.kNavbar .nav{ margin-right: 6px;}
 .kNavbar .nav > li > a{ text-shadow: none;}
 .kNavbar .nav > li > a:hover{ color: #000}
 .navbar .nav li.dropdown > .dropdown-toggle:hover, .navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
@@ -323,9 +326,8 @@ a.top_stick, a.top_stick:active, a.top_stick:visited {
 
 /* `kMainMenu - 首页按钮
    ============================================================ */
-.kMainMenu{float: left; line-height: 40px; margin-left: 20px; text-align: center; color: #333; font-size: 16px; }
-.kMainMenu:hover{ text-decoration: none; color: #B98600;background: url(../img/site.png) 0 0 no-repeat; }
-.kMainMenu.hover{ text-decoration: none; color: #B98600;background: url(../img/site.png) 0 0 no-repeat; }
+.kMainMenu{float: left; line-height: 40px; margin-left: 20px; text-align: center; color: #B98600; font-size: 16px; }
+.kMainMenu:hover{ text-decoration: none; background-color: #272A39 }
 .kMainMenu-border{ display: inline-block; width: 1px; height: 40px; vertical-align:top; background: url(../img/site.png) -100px -110px no-repeat;}
 .kMainMenu-con{ display: inline-block; padding: 0 20px;cursor: pointer;}
 
