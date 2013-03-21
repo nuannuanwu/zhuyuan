@@ -13,3 +13,5 @@ encoding//memory/views/account.py=utf-8
 encoding//memory/views/admin/extend.py=utf-8
 encoding//memory/views/admin/urls.py=utf-8
 encoding//memory/views/frontend.py=utf-8
+encoding//memory/views/test.py=utf-8
+encoding//system/oss_extra/storage.py=utf-8

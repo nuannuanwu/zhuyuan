@@ -101,6 +101,9 @@ DATABASES = {
 		"HOST": mysql_host,
 		# Set to empty string for default. Not used with sqlite3.
 		"PORT": mysql_port,
+		'OPTIONS': {
+            'init_command': 'SET storage_engine=MyISAM',
+        },
 	},
 	"master": {
 		# Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
@@ -115,6 +118,9 @@ DATABASES = {
 		"HOST": mysql_host,
 		# Set to empty string for default. Not used with sqlite3.
 		"PORT": mysql_port,
+		'OPTIONS': {
+            'init_command': 'SET storage_engine=MyISAM',
+        },
 	},
 	"slave": {
 		# Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
@@ -129,6 +135,9 @@ DATABASES = {
 		"HOST": mysql_host_s,
 		# Set to empty string for default. Not used with sqlite3.
 		"PORT": mysql_port,
+		'OPTIONS': {
+            'init_command': 'SET storage_engine=MyISAM',
+        },
 	}		
 }
 class DataBaseRouter(object):
