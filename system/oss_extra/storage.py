@@ -15,7 +15,7 @@ from memory import settings
 
 class AliyunStorage(Storage):
     
-    def __init__(self, location="zhuyuan"): 
+    def __init__(self, location="zhuyuanprj"): 
         self.prefix = location
         self.client = oss.oss_api.OssAPI(settings.OSS_HOST,settings.OSS_ACCESS_KEY_ID,settings.OSS_SECRET_ACCESS_KEY)
 
