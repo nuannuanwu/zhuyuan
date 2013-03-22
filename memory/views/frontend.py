@@ -44,7 +44,7 @@ from django.db.models import Max
 def index(request, template_name="memory/tile_index.html"):
     ctx ={}
     tile_list = []
-    tiles = Tile.objects.all()
+    tiles = Tile.objects.all()[0:45]
     
     ctx['tiles'] = tiles
     if request.is_ajax():
@@ -146,4 +146,36 @@ def vcar(request, template_name="memory/includes/vcar.html"):
     data = render(request, template_name, info)
     con=data.content
     return helpers.ajax_ok('成功',con)
+
+def view(request, tile_id, template_name="memory/tile_view.html"):
+    ctx = {}
+    tile = get_object_or_404(Tile, pk=tile_id)
+
+    try:
+        next_tile = Tile.objects.filter(microsecond__gt=tile.microsecond).order_by("start_time","microsecond")[0]  
+    except:
+        next_tile = None
+    try:
+        last_tile = Tile.objects.filter(microsecond__lt=tile.microsecond).order_by("-start_time","-microsecond")[0]      
+    except:
+        last_tile = None
+
+    comments = Comment.objects.for_model(tile).select_related('user')\
+            .order_by("-submit_date").filter(is_public=True).filter(is_removed=False)
+    emo_config = helpers.emo_config()
+    ctx.update({"tile": tile,"comments":comments,"emo_config":emo_config,"next_tile":next_tile,"last_tile":last_tile})
+    return render(request, template_name, ctx)
+
+def delete_comment(request, comment_id):
+
+    comment = get_object_or_404(comments.get_model(), pk=comment_id, site__pk=settings.SITE_ID)
+    if request.user == comment.user:
+        perform_delete(request, comment)
+        comment.content_object.after_del_comments()
+        messages.success(request, _("Comment deleted success"))
+    else:
+        messages.error(request, _("You can't delete this comment"))
+
+    # Flag the comment as deleted instead of actually deleting it.
+    return redirect(get_redir_url(request))
 

@@ -15,9 +15,10 @@ handler500 = "memory.views.errors.handler500"
 urlpatterns = patterns("memory.views.frontend",
         url('^index/$', "index", name="home"),
         url(r'^$', "index", name='home'),
-        #url('^tile/(?P<tile_id>\d+)/$', "view", name='tile_view'),
+        url('^tile/(?P<tile_id>\d+)/$', "view", name='tile_view'),
         url(r'^get_user_info/$', "get_user_info", name="memory_get_user_info"), 
         url(r'^vcar/$', "vcar", name="memory_vcar"),
+        url('^tile/comment/(?P<comment_id>\d+)/delete/$', "delete_comment", name='tile_delete_comment'),
 )
                        
 # 找回密码各项

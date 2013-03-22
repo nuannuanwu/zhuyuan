@@ -103,6 +103,14 @@ class Tile(BaseModel,Likeable, SoftDeleteMixin):
     def __unicode__(self):
         return unicode(self.title)
 
+    def picture(self):
+        url = helpers.media_path(self.img)
+        if url:
+            return '<img src='+url +' style="max-height: 100px; max-width:100px;">'
+        else:
+            return ''
+    picture.allow_tags = True
+
     def save(self, *args, **kwargs):
         
         if not self.start_time:

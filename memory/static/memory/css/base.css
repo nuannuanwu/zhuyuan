@@ -68,7 +68,7 @@ a:focus {
 	padding:7px 14px;
 	border-bottom:0px;
 	}
-a{ outline:0;}
+a{ outline:0;text-decoration: none;}
 
 #nodisplay{ display:none; width:0px; height:0; visibility:hidden; overflow:hidden;}
 #id_mugshot.imghidden,#change_img.imghidden,#fileb.imghidden{ height:1px; width:1px; opacity:0; filter:alpha(opacity=0);}

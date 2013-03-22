@@ -96,9 +96,9 @@ body{background-color: #BD9E67;padding-top: 60px;}
 .kmonthPic-cur img{ display: inline-block;}
 .kmonthPic-cur .kmonthPic-cur-icon{ display: inline-block; }
 .kDetail{ background-color: #FFF; width: 555px; padding: 25px 30px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);}
-.kDetail-bar{ margin-bottom: 28px;overflow: hidden;}
+.kDetail-bar{overflow: hidden;}
 .kDetail-bar .buttons{float:left;margin:10px 0 0 10px;}
-.kDetail-bar-info{ float: right; font-size: 14px; color: #666; margin-top:4px;}
+.kDetail-bar-info{ float: right; font-size: 14px; color: #666; margin-top:10px;margin-right: 10px;}
 
 /* 图片详情 */
 .kDetail-picInfo{ margin-bottom: 50px; }
