@@ -12,7 +12,7 @@ except ImportError:
 
 class SaeStorage(Storage):
      
-    def __init__(self, location="base"
+    def __init__(self, location="zhuyuan"
             #accesskey=settings.ACCESS_KEY, 
             #secretkey=settings.SECRET_KEY, 
             #prefix=settings.APP_NAME
