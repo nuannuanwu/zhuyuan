@@ -26,27 +26,6 @@
 
 <!-- CONTENT -->
 {% block content %}
-<style type="text/css">
-.grp-listing-small .grp-row p{
-	float:left;
-	}
-</style>
-<script type="text/javascript">
-    var xmlhttp;
-    if (window.XMLHttpRequest)
-      {// code for IE7+, Firefox, Chrome, Opera, Safari
-      xmlhttp=new XMLHttpRequest();
-      }
-    else
-      {// code for IE6, IE5
-      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-      }
-    url = '{% url admin_send_staff_unread %}'
-    function send_staff_unread(){
-        xmlhttp.open("GET",url,true);
-        xmlhttp.send();
-    }
-</script>  
     <div class="g-d-c">
         <div class="g-d-12 g-d-f">
             {% for app in app_list %}

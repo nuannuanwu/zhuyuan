@@ -54,7 +54,7 @@ class TileCategory(BaseModel, SoftDeleteMixin):
     name = models.CharField(_('Name'),max_length=120)
     description = models.TextField(_('Description'),max_length=765, blank=True)
     img = ThumbnailerImageField(_('TileCategory.img'),blank=True, upload_to="TileCategory",)
-    parent = models.ForeignKey('self',null=True,blank=True,verbose_name = _('tile category parent'))
+    parent = models.ForeignKey('self',null=True,blank=True,verbose_name = _('tile category parent'),default=0)
     sort = models.IntegerField(_('sort'),default=0)
 
     @property
