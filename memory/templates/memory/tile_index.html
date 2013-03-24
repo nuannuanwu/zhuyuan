@@ -22,10 +22,27 @@
 .kCategory .body-categorys a{ float: left; line-height: 1; white-space: nowrap; color: #545454; font-size: 14px;  padding: 5px 6px; margin:0 3px 8px 0; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius:4px;}
 .kCategory .body-categorys a:hover,.kCategory .body-categorys a.ac{background-color: #EDEDED; text-decoration: none;}
 .kCategory .body-categorys a.ac{ color: #B88500;}
+.friend{width: 125px}
+#ddNav{height: 50px;line-height: 50px;background: #111;width: 1160px;}
+#ddNav .xdo {overflow: hidden;zoom: 1;width: 1160px;margin: 0 auto;}
+#ddNav .xdo li {float: left;background: #555;width: 10%;display: inline;text-align: center;list-style: none;height: 50px;}
+#ddNav .xdo li a .active {background: #54bfff !important;}
+#ddNav .xdo li a:hover {text-decoration: none;background: #000;}
+#ddNav .xdo li a {color: #fff;text-decoration: none;font-size: 22px;font-family: Microsoft YaHei;display: block;text-align: center;height: 50px;vertical-align: middle;padding-top: 13px;}
 </style>
 {% endblock %}
 {% block content %}
-
+{% if request.user.friend %}
+<div id="ddNav">
+<ul class="xdo">
+<li><a href="{% url home %}" {% if not q %}style="background: #54bfff"{% endif %}>全部</a></li>
+<li><a href="{% url home %}?q=all" {% ifequal q 'all' %}style="background: #54bfff"{% endifequal %}>竹园一个窝</a></li>
+{% for f in friends %}
+<li><a href="{% url home %}?q={{f.user.id}}" {% if q == f.user.id %}style="background: #54bfff"{% endif %}>{{f.name}}</a></li>
+{% endfor %}
+</ul>
+</div>
+{% endif %}
 <div id="tile-flow">
     <ul class="thumbnails kTiles">  
    	{% if tiles %}
@@ -72,7 +89,10 @@ window.NOAUTOFOOT = 1;
 			},function(){
 				$(this).children(".divhidden").hide();
 				})
-				
+			$("#ddNav a").click(function(){
+                $("#ddNav a").attr("style","")
+                $(this).attr("style","background: #54bfff")
+            })	
 		})
 </script>
 {% endblock %}

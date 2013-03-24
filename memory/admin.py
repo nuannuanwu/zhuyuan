@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.db import models
 
 # from django.utils.translation import ugettext as _
-from memory.models import Tile,TileCategory
+from memory.models import Tile,TileCategory,Friend
 from oauth2app.models import Client, AccessToken, Code
 
 from django.utils.translation import ugettext, ugettext_lazy as _
@@ -42,6 +42,7 @@ class TileAdmin(admin.ModelAdmin):
 
 admin.site.register(Tile,TileAdmin)
 admin.site.register(TileCategory)
+admin.site.register(Friend)
 
 
 

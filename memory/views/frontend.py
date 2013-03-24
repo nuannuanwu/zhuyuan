@@ -12,7 +12,7 @@ from django.contrib.comments.views.moderation import perform_delete
 from django.contrib.comments.signals import comment_was_posted
 from django.contrib import comments
 from django.contrib.auth.decorators import login_required, permission_required
-from memory.models import Tile,TileCategory
+from memory.models import Tile,TileCategory,Friend
 from django.db.models import Q
 from django.contrib.contenttypes.models import ContentType
 from memory import helpers
@@ -44,9 +44,20 @@ from django.db.models import Max
 def index(request, template_name="memory/tile_index.html"):
     ctx ={}
     tile_list = []
-    tiles = Tile.objects.all()[0:45]
-    
+    friends = Friend.objects.all()
+    q = request.GET.get("q",'')
+    if not q:
+        tiles = Tile.objects.all()
+    else:
+        if q == 'all':
+            userid_list = [f.user_id for f in friends]
+            tiles = Tile.objects.filter(user_id__in=userid_list)
+        else:
+            tiles = Tile.objects.filter(user_id=q)
+            q = int(q)
     ctx['tiles'] = tiles
+    ctx['friends'] = friends
+    ctx['q'] = q
     if request.is_ajax():
         page = int(request.GET.get("page",'1'))
         start = (page - 1) * 15
@@ -55,7 +66,6 @@ def index(request, template_name="memory/tile_index.html"):
         ctx['tiles'] = tiles
         template_name = "memory/tile_index_container.html"
         return render(request, template_name, ctx)
-    print tiles.count(),'ttttt'
     return render(request, template_name, ctx)
 
 

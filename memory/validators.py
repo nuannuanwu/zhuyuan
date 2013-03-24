@@ -30,7 +30,7 @@ def validate_not_spaces(value):
         raise ValidationError(_(u"You must provide more than just whitespace."))
 
 def user_is_exist(value):
-    from memory.models import Teacher
-    is_exist = Teacher.objects.filter(user_id=value,is_delete=True).count()
+    from memory.models import Friend
+    is_exist = Friend.objects.filter(user_id=value,is_delete=True).count()
     if is_exist:
-        raise ValidationError(_(u"具有 User 的 Teacher 已存在。")) 
+        raise ValidationError(_(u"具有 User 的 Friend 已存在。")) 

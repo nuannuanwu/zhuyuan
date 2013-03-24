@@ -1,14 +1,4 @@
 # -*- coding: utf-8 -*-
-
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#     * Rearrange models' order
-#     * Make sure each model has one field with primary_key=True
-# Feel free to rename the models, but don't rename db_table values or field names.
-#
-# Also note: You'll have to insert the output of 'django-admin.py sqlcustom [appname]'
-# into your database.
-
 from django.db import models
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
@@ -18,8 +8,6 @@ from memory.mixins import *
 from memory.utils import upload_to_mugshot
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.comments import Comment
-from manage.managers import SchoolUserManager, TileManager, SmsManager, CookbookManager, CookbookSetManager, VerifySmsManager, \
-TileCategoryManager,CharManager,CookbookreadManager
 
 from memory.validators import validate_not_spaces,user_is_exist
 from memory import helpers
@@ -134,5 +122,40 @@ class ChangeUsername(models.Model):
         verbose_name_plural = _('ChangeUsernames')
 
         ordering = ['-edittime']
+
+
+class Friend(BaseModel, SoftDeleteMixin):
+    creator = models.ForeignKey(User, related_name="+",verbose_name = _('creator'))
+    user = models.OneToOneField(User,verbose_name = _('user'),validators=[user_is_exist])
+    name = models.CharField(_('name'), max_length=60,  validators=[validate_not_spaces])
+    description = models.TextField(_('Description'), max_length=765, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        profile = self.user.get_profile()
+        profile.realname = self.name
+        profile.save()
+        super(Friend, self).save(*args, **kwargs)
+        
+    def getAvatar(self):
+        profile = self.user.get_profile()
+        return profile.mugshot
+
+    def getMobile(self):
+        mobile = ''
+        try:
+            profile = self.user.get_profile()
+            mobile = profile.mobile
+        except ObjectDoesNotExist:
+            pass
+        return mobile
+
+    class Meta:
+        verbose_name = _('friend')
+        verbose_name_plural = _('friends')
+        db_table = 'memory_friend'
+        ordering = ['name']
 
         
