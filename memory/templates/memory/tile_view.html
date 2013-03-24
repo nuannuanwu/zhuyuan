@@ -9,12 +9,12 @@
         <div class="kDetail cf">
             {% if last_tile %}
             <div style="display: inline;position: absolute;left: -250px;height: 260px;top: 0px;">
-                <a href="{% url tile_view last_tile.id %}"><img style="position: absolute;rclip:rect(0px 192px 800px 0px)" src="{% media_path last_tile.img "normal" %}"></a>
+                <a href="{% url tile_view last_tile.id %}"><img style="width:205px;" src="{% media_path last_tile.img "normal" %}"></a>
             </div>
             {% endif %}
             {% if next_tile %}
             <div style="display: inline;position: absolute;right: -250px;height: 260px;top: 0px;">
-                <a href="{% url tile_view next_tile.id %}"><img style="position: absolute;rclip:rect(0px 192px 800px 0px)" src="{% media_path next_tile.img "normal" %}"></a>
+                <a href="{% url tile_view next_tile.id %}"><img style="width:205px;" src="{% media_path next_tile.img "normal" %}"></a>
             </div>
             {% endif %}
             <!-- 头部信息展示 -->
