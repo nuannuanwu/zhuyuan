@@ -1,6 +1,5 @@
 *.pyc
 *.swp
-.gitconfig
 *.orig
 *.db
 *.wsgic
@@ -11,8 +10,8 @@ src/
 fixtures/
 build/
 system/django/
-.pydevproject
-.project
+*.project
+*.pydevproject
 *.log.*
 
 
