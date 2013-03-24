@@ -11,6 +11,8 @@ src/
 fixtures/
 build/
 system/django/
+.pydevproject
+.project
 *.log.*
 
 
