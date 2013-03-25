@@ -47,7 +47,7 @@ def index(request, template_name="memory/tile_index.html"):
     friends = Friend.objects.all()
     q = request.GET.get("q",'')
     if not q:
-        tiles = Tile.objects.all()
+        tiles = Tile.objects.filter(is_public=True)
     else:
         if q == 'all':
             userid_list = [f.user_id for f in friends]
@@ -160,15 +160,25 @@ def vcar(request, template_name="memory/includes/vcar.html"):
 def view(request, tile_id, template_name="memory/tile_view.html"):
     ctx = {}
     tile = get_object_or_404(Tile, pk=tile_id)
+    q = request.GET.get("q",'')
+    if not q:
+        tiles = Tile.objects.filter(is_public=True)
+    else:
+        if q == 'all':
+            friends = Friend.objects.all()
+            userid_list = [f.user_id for f in friends]
+            tiles = Tile.objects.filter(user_id__in=userid_list)
+        else:
+            tiles = Tile.objects.filter(user_id=q)
 
     try:
-        next_tile = Tile.objects.filter(microsecond__gt=tile.microsecond).order_by("start_time","microsecond")[0]  
-    except:
-        next_tile = None
-    try:
-        last_tile = Tile.objects.filter(microsecond__lt=tile.microsecond).order_by("-start_time","-microsecond")[0]      
+        last_tile = tiles.filter(microsecond__gt=tile.microsecond).order_by("start_time","microsecond")[0]  
     except:
         last_tile = None
+    try:
+        next_tile = tiles.filter(microsecond__lt=tile.microsecond).order_by("-start_time","-microsecond")[0]      
+    except:
+        next_tile = None
 
     comments = Comment.objects.for_model(tile).select_related('user')\
             .order_by("-submit_date").filter(is_public=True).filter(is_removed=False)

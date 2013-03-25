@@ -55,6 +55,7 @@
 
 <body id="{% block body_id %}body{% endblock %}">
     {% include "nav_bar.html" %}
+    <div style="background: #000;"><img style="position: fixed;left: 0px;top: 0px;width: 100%;opacity: 0.8;z-index: -1;" src="{{ STATIC_URL }}img/default.jpg" alt="Background"></div>
     <div class="container" id="container">
         {% block tile_bar %}{% endblock %}
         {% block page-header %}{% endblock %}

@@ -35,7 +35,7 @@
 {% if request.user.friend %}
 <div id="ddNav">
 <ul class="xdo">
-<li><a href="{% url home %}" {% if not q %}style="background: #54bfff"{% endif %}>全部</a></li>
+<li><a href="{% url home %}" {% if not q %}style="background: #54bfff"{% endif %}>公开</a></li>
 <li><a href="{% url home %}?q=all" {% ifequal q 'all' %}style="background: #54bfff"{% endifequal %}>竹园一个窝</a></li>
 {% for f in friends %}
 <li><a href="{% url home %}?q={{f.user.id}}" {% if q == f.user.id %}style="background: #54bfff"{% endif %}>{{f.name}}</a></li>

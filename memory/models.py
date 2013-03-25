@@ -74,7 +74,7 @@ class Tile(BaseModel,Likeable, SoftDeleteMixin):
     title = models.CharField(_('title'),max_length=120)
     img = ThumbnailerImageField(_('tile.img'), blank=True,upload_to='tiles')
     n_likers = models.IntegerField(_('n_likers'),default=0, blank=True)
-    is_public = models.BooleanField(_('is_public'),default=False)
+    is_public = models.BooleanField(_('is_public'),default=True)
     video = models.CharField(_('video'),max_length=255, blank=True)
     description = models.TextField(_('Description'),max_length=765, blank=True)
     content = models.TextField(_('Content'),max_length=765, blank=True)
@@ -99,6 +99,14 @@ class Tile(BaseModel,Likeable, SoftDeleteMixin):
             return ''
     picture.allow_tags = True
 
+    def comments(self, limit=3):
+        try:
+            return Comment.objects.for_model(self) \
+                .filter(is_public=True).filter(is_removed=False) \
+                .order_by("-id")[0:limit]
+        except:
+            return None
+
     def save(self, *args, **kwargs):
         
         if not self.start_time:
@@ -110,6 +118,12 @@ class Tile(BaseModel,Likeable, SoftDeleteMixin):
         
         if not self.end_time:
             self.end_time = datetime.date(9999,12,31)
+
+        try:
+            f = self.user.friend
+            self.is_public = False
+        except:
+            self.is_public = True
 
         super(Tile, self).save(*args, **kwargs)
 
