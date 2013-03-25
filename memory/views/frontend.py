@@ -183,7 +183,7 @@ def view(request, tile_id, template_name="memory/tile_view.html"):
     comments = Comment.objects.for_model(tile).select_related('user')\
             .order_by("-submit_date").filter(is_public=True).filter(is_removed=False)
     emo_config = helpers.emo_config()
-    ctx.update({"tile": tile,"comments":comments,"emo_config":emo_config,"next_tile":next_tile,"last_tile":last_tile})
+    ctx.update({"tile": tile,"comments":comments,"emo_config":emo_config,"next_tile":next_tile,"last_tile":last_tile,"q":q})
     return render(request, template_name, ctx)
 
 def delete_comment(request, comment_id):
