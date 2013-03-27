@@ -347,6 +347,13 @@ def signin(request, auth_form=AuthenticationForm,
                                                      form.cleaned_data['remember_me'])
             user = authenticate(identification=identification,
                                 password=password)
+            try:
+                profile = user.get_profile()
+            except:
+                p = Profile()
+                p.user = user
+                p.save()
+                
             if user.is_active:
                 login(request, user)
                 if remember_me:
