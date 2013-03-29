@@ -12,6 +12,7 @@ build/
 system/django/
 .project
 .pydevproject
+.settings
 *.log.*
 
 

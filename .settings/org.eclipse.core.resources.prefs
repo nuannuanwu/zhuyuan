@@ -15,3 +15,5 @@ encoding//memory/views/admin/urls.py=utf-8
 encoding//memory/views/frontend.py=utf-8
 encoding//memory/views/test.py=utf-8
 encoding//system/oss_extra/storage.py=utf-8
+encoding/django_wsgi.py=utf-8
+encoding/manage.py=utf-8
